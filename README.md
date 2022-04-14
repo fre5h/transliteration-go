@@ -31,8 +31,9 @@ GO library for transliteration. 🇺🇦 🇬🇧 🔡
 
 ## Using 👨‍🎓
 
+###### main.go
+
 ```go
-// main.go
 package main
 
 import (
@@ -47,13 +48,15 @@ func main() {
     inputString := strings.Join(os.Args[1:], " ")
     transliteratedString := transliteration.UkrToLat(inputString)
     
-    fmt.Println(transliteratedString)
+    fmt.Println("transliterated text: ", transliteratedString)
 }
 ```
 
+###### bash
+
 ```bash
 $ go run main.go Слава Україні!
-Slava Ukraini!
+transliterated text: Slava Ukraini!
 ```
 
 ### Some examples of *Ukrainian-to-Latin* transliteration ℹ️
