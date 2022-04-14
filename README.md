@@ -45,7 +45,9 @@ import (
 
 func main() {
     inputString := strings.Join(os.Args[1:], " ")
-    fmt.Println(transliteration.UkrToLat(inputString))
+    transliteratedString := transliteration.UkrToLat(inputString)
+    
+    fmt.Println(transliteratedString)
 }
 ```
 
