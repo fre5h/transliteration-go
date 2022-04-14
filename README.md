@@ -29,6 +29,25 @@ GO library for transliteration. 🇺🇦 🇬🇧 🔡
     </tbody>
 </table>
 
+## Using 👨‍🎓
+
+```go
+package main
+
+import (
+    "fmt"
+    "os"
+    "strings"
+
+    "github.com/fre5h/transliteration-go"
+)
+
+func main() {
+    inputString := strings.Join(os.Args[1:], " ")
+    fmt.Println(transliteration.UkrToLat(inputString))
+}
+```
+
 ### Some examples of *Ukrainian-to-Latin* transliteration ℹ️
 
 <table>
