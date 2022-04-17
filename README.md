@@ -4,7 +4,7 @@ GO library for transliteration. 🇺🇦 🇬🇧 🔡
 
 ## Requirements 🧐
 
-* GO >= 1.18
+* GO >= 1.16
 
 ## Available transliteration methods 🎁
 
@@ -55,6 +55,8 @@ func main() {
 ###### bash
 
 ```bash
+$ go get "github.com/fre5h/transliteration-go"@v1.0.0
+
 $ go run main.go Слава Україні!
 transliterated text: Slava Ukraini!
 ```
