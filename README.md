@@ -2,7 +2,7 @@
 
 GO library for transliteration. 🇺🇦 🇬🇧 🔡
 
-[![codecov](https://codecov.io/gh/fre5h/transliteration-go/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/fre5h/transliteration-go)
+[![CodeCov](https://img.shields.io/codecov/c/github/fre5h/transliteration-go.svg?style=flat-square)](https://codecov.io/github/fre5h/transliteration-go)
 
 ## Requirements 🧐
 
