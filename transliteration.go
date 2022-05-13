@@ -76,16 +76,18 @@ func UkrToLat(ukrainianText string) string {
 	return transliteratedText
 }
 
-func processZghException(firstChar rune, secondChar rune) string {
+func processZghException(firstChar rune, secondChar rune) (result string) {
+	result = ""
+
 	if firstChar == 'З' && secondChar == 'г' {
-		return "Zgh"
+		result = "Zgh"
 	} else if firstChar == 'З' && secondChar == 'Г' {
-		return "ZGH"
+		result = "ZGH"
 	} else if firstChar == 'з' && secondChar == 'г' {
-		return "zgh"
+		result = "zgh"
 	} else if firstChar == 'з' && secondChar == 'Г' {
-		return "zGH"
+		result = "zGH"
 	}
 
-	return ""
+	return
 }

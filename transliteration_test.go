@@ -351,6 +351,7 @@ var testVariants = []struct {
 	{"йорж", "yorzh"},
 	{"юшка", "yushka"},
 	{"яблуко", "yabluko"},
+	{"зГраЯ", "zGHraIA"},
 	{"Добрий день", "Dobryi den"},
 	{"Привіт світ!", "Pryvit svit!"},
 	{"Вредний єнот", "Vrednyi yenot"},
