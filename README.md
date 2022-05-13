@@ -2,6 +2,8 @@
 
 GO library for transliteration. 🇺🇦 🇬🇧 🔡
 
+[![codecov](https://codecov.io/gh/fre5h/transliteration-go/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/fre5h/transliteration-go)
+
 ## Requirements 🧐
 
 * GO >= 1.16
