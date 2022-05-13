@@ -2,9 +2,11 @@
 
 GO library for transliteration. 🇺🇦 🇬🇧 🔡
 
-[![CodeCov](https://img.shields.io/codecov/c/github/fre5h/transliteration-go.svg?style=flat-square)](https://codecov.io/github/fre5h/transliteration-go)
 [![Build Status](https://img.shields.io/github/workflow/status/fre5h/transliteration-go/CI/main?style=flat-square)](https://github.com/fre5h/transliteration-go/actions?query=workflow%3ACI+branch%3Amain+)
+[![CodeCov](https://img.shields.io/codecov/c/github/fre5h/transliteration-go.svg?style=flat-square)](https://codecov.io/github/fre5h/transliteration-go)
+[![License](https://img.shields.io/github/license/fre5h/transliteration-go?style=flat-square)](https://pkg.go.dev/github.com/fre5h/transliteration-go)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg?style=flat-square)](https://gitter.im/fre5h/transliteration-go)
+[![GoDoc](https://godoc.org/github.com/dgrijalva/jwt-go?status.svg)](https://godoc.org/github.com/dgrijalva/jwt-go)
 
 ## Requirements 🧐
 
@@ -59,9 +61,9 @@ func main() {
 ###### bash
 
 ```bash
-$ go get "github.com/fre5h/transliteration-go"@v1.0.0
-go: downloading github.com/fre5h/transliteration-go v1.0.0
-go: added github.com/fre5h/transliteration-go v1.0.0
+$ go get "github.com/fre5h/transliteration-go"@v1.0.1
+go: downloading github.com/fre5h/transliteration-go v1.0.1
+go: added github.com/fre5h/transliteration-go v1.0.1
 
 $ go run main.go Слава Україні!
 transliterated text: Slava Ukraini!
