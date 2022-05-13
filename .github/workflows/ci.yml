@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -17,8 +17,43 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: Build
-      run: go build -v ./...
-
     - name: Test
       run: go test -v ./...
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: Build
+        run: go build -v ./...    
+
+  code-coverage:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: Run test coverage
+        run: go test -race -coverprofile=coverage.txt -covermode=atomic
+
+      # - name: Upload to Codecov
+      #   run: bash <(curl -s https://codecov.io/bash)
+
+      - name: 'Upload to Codecov'
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.txt
+          fail_ci_if_error: true
+          verbose: true
