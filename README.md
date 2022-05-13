@@ -3,6 +3,7 @@
 GO library for transliteration. 🇺🇦 🇬🇧 🔡
 
 [![CodeCov](https://img.shields.io/codecov/c/github/fre5h/transliteration-go.svg?style=flat-square)](https://codecov.io/github/fre5h/transliteration-go)
+[![Build Status](https://img.shields.io/github/workflow/status/fre5h/transliteration-go/CI/main?style=flat-square)](https://github.com/fre5h/transliteration-go/actions?query=workflow%3ACI+branch%3Amain+)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg?style=flat-square)](https://gitter.im/fre5h/transliteration-go)
 
 ## Requirements 🧐
