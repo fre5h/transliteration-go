@@ -1,4 +1,4 @@
-name: Go
+name: CI
 
 on:
   push:
@@ -47,9 +47,6 @@ jobs:
 
       - name: Run test coverage
         run: go test -race -coverprofile=coverage.txt -covermode=atomic
-
-      # - name: Upload to Codecov
-      #   run: bash <(curl -s https://codecov.io/bash)
 
       - name: 'Upload to Codecov'
         uses: codecov/codecov-action@v3
