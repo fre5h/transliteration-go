@@ -5,7 +5,7 @@
 //
 // https://zakon.rada.gov.ua/laws/show/55-2010-%D0%BF#Text
 
-package transliteration_go
+package transliteration
 
 import "unicode"
 
