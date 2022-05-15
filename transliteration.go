@@ -9,9 +9,7 @@ package transliteration
 
 import "unicode"
 
-func UkrToLat(ukrainianText string) string {
-	var transliteratedText string
-
+func UkrToLat(ukrainianText string) (transliteratedText string) {
 	characters := []rune(ukrainianText)
 	numberOfChars := len(characters)
 	skipNextChar := false
@@ -73,7 +71,7 @@ func UkrToLat(ukrainianText string) string {
 		}
 	}
 
-	return transliteratedText
+	return
 }
 
 func processZghException(firstChar rune, secondChar rune) (result string) {
