@@ -15,9 +15,9 @@ GO library for transliteration. 🇺🇦 🇬🇧 🔡
 
 ## Available transliteration methods 🎁
 
-| From      | To    | Rules                                                                                                                                 |
-|-----------|-------|---------------------------------------------------------------------------------------------------------------------------------------|
-| Ukrainian | Latin | Resolution of the Cabinet of Ministers of Ukraine №55 dated January 27, 2010<br/> https://zakon.rada.gov.ua/laws/show/55-2010-%D0%BF#Text  |
+| From      | To    | Rules                                                                                                                                     |
+|-----------|-------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| Ukrainian | Latin | Resolution of the Cabinet of Ministers of Ukraine №55 dated January 27, 2010<br/> https://zakon.rada.gov.ua/laws/show/55-2010-%D0%BF#Text |
 
 ## Using 👨‍🎓
 
