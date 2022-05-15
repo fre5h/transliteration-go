@@ -15,26 +15,9 @@ GO library for transliteration. 🇺🇦 🇬🇧 🔡
 
 ## Available transliteration methods 🎁
 
-<table>
-    <thead>
-        <tr>
-            <th>From</th>
-            <th>To</th>
-            <th>Rules</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Ukrainian</td>
-            <td>Latin</td>
-            <td>
-                Resolution of the Cabinet of Ministers of Ukraine №55 dated January 27, 2010
-                <br />
-                https://zakon.rada.gov.ua/laws/show/55-2010-%D0%BF#Text
-            </td>
-        </tr>
-    </tbody>
-</table>
+| From      | To    | Rules                                                                                                                                 |
+|-----------|-------|---------------------------------------------------------------------------------------------------------------------------------------|
+| Ukrainian | Latin | Resolution of the Cabinet of Ministers of Ukraine №55 dated January 27, 2010<br/> https://zakon.rada.gov.ua/laws/show/55-2010-%D0%BF#Text  |
 
 ## Using 👨‍🎓
 
@@ -44,18 +27,18 @@ GO library for transliteration. 🇺🇦 🇬🇧 🔡
 package main
 
 import (
-    "fmt"
-    "os"
-    "strings"
+	"fmt"
+	"os"
+	"strings"
 
-    "github.com/fre5h/transliteration-go"
+	"github.com/fre5h/transliteration-go"
 )
 
 func main() {
-    inputString := strings.Join(os.Args[1:], " ")
-    transliteratedString := transliteration.UkrToLat(inputString)
-    
-    fmt.Println("transliterated text: ", transliteratedString)
+	inputString := strings.Join(os.Args[1:], " ")
+	transliteratedString := transliteration.UkrToLat(inputString)
+
+	fmt.Println("transliterated text: ", transliteratedString)
 }
 ```
 
@@ -72,44 +55,15 @@ transliterated text: Slava Ukraini!
 
 ### Some examples of *Ukrainian-to-Latin* transliteration ℹ️
 
-<table>
-    <thead>
-        <tr>
-            <th>Ukrainian text</th>
-            <th>Transliterated text</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Володимир</td>
-            <td>Volodymyr</td>
-        </tr>
-        <tr>
-            <td>Богдан</td>
-            <td>Bohdan</td>
-        </tr>
-        <tr>
-            <td>Жанна</td>
-            <td>Zhanna</td>
-        </tr>
-        <tr>
-            <td>Наталія</td>
-            <td>Nataliia</td>
-        </tr>
-        <tr>
-            <td>Олексій</td>
-            <td>Oleksii</td>
-        </tr>
-        <tr>
-            <td>Уляна</td>
-            <td>Uliana</td>
-        </tr>
-        <tr>
-            <td>Юрій</td>
-            <td>Yurii</td>
-        </tr>
-    </tbody>
-</table>
+| Ukrainian text | Transliterated text |
+|----------------|---------------------|
+| Володимир      | Volodymyr           |
+| Богдан         | Bohdan              |     
+| Жанна          | Zhanna              |
+| Наталія        | Nataliia            |
+| Олексій        | Oleksii             |
+| Уляна          | Uliana              |
+| Юрій           | Yurii               |
 
 ## Contributing 🤝
 
