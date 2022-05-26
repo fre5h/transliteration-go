@@ -27,18 +27,18 @@ GO library for transliteration. 🇺🇦 🇬🇧 🔡
 package main
 
 import (
-	"fmt"
-	"os"
-	"strings"
+    "fmt"
+    "os"
+    "strings"
 
-	"github.com/fre5h/transliteration-go"
+    "github.com/fre5h/transliteration-go"
 )
 
 func main() {
-	inputString := strings.Join(os.Args[1:], " ")
-	transliteratedString := transliteration.UkrToLat(inputString)
+    inputString := strings.Join(os.Args[1:], " ")
+    transliteratedString := transliteration.UkrToLat(inputString)
 
-	fmt.Println("transliterated text: ", transliteratedString)
+    fmt.Println("transliterated text: ", transliteratedString)
 }
 ```
 
