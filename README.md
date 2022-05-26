@@ -7,7 +7,7 @@ GO library for transliteration. 🇺🇦 🇬🇧 🔡
 [![Go Report Card](https://goreportcard.com/badge/github.com/fre5h/transliteration-go?style=flat-square)](https://goreportcard.com/report/github.com/fre5h/transliteration-go)
 [![License](https://img.shields.io/github/license/fre5h/transliteration-go?style=flat-square)](https://pkg.go.dev/github.com/fre5h/transliteration-go)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg?style=flat-square)](https://gitter.im/fre5h/transliteration-go)
-[![GoDoc](https://godoc.org/github.com/dgrijalva/jwt-go?status.svg)](https://godoc.org/github.com/dgrijalva/jwt-go)
+[![GoDoc](https://godoc.org/github.com/dgrijalva/jwt-go?status.svg)](https://godoc.org/github.com/fre5h/transliteration-go)
 
 ## Requirements 🧐
 
