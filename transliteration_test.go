@@ -5,9 +5,11 @@
 //
 // https://zakon.rada.gov.ua/laws/show/55-2010-%D0%BF#Text
 
-package transliteration
+package transliteration_test
 
 import (
+	"github.com/fre5h/transliteration-go"
+
 	"testing"
 )
 
@@ -367,7 +369,7 @@ var testVariants = []struct {
 
 func TestUkrToLat(t *testing.T) {
 	for _, data := range testVariants {
-		if result := UkrToLat(data.ukrainian); result != data.latin {
+		if result := transliteration.UkrToLat(data.ukrainian); result != data.latin {
 			t.Errorf(
 				"Transliteration of %s\"%s\"%s is incorrect, expected: %s\"%s\"%s, actual: %s\"%s\"%s.",
 				yellow, data.ukrainian, reset,
