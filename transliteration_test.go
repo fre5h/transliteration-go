@@ -8,15 +8,35 @@
 package transliteration_test
 
 import (
-	"github.com/fre5h/transliteration-go"
-
+	"fmt"
 	"testing"
+
+	"github.com/fre5h/transliteration-go"
 )
 
 const reset = "\033[0m"
 const red = "\033[31m"
 const green = "\033[32m"
 const yellow = "\033[33m"
+
+func TestUkrToLat(t *testing.T) {
+	for _, data := range testVariants {
+		if result := transliteration.UkrToLat(data.ukrainian); result != data.latin {
+			t.Errorf(
+				"Transliteration of %s\"%s\"%s is incorrect, expected: %s\"%s\"%s, actual: %s\"%s\"%s.",
+				yellow, data.ukrainian, reset,
+				green, data.latin, reset,
+				red, result, reset,
+			)
+		}
+	}
+}
+
+func ExampleUkrToLat() {
+	fmt.Println(transliteration.UkrToLat("Слава Україні!"))
+	// Output:
+	// Slava Ukraini!
+}
 
 var testVariants = []struct {
 	ukrainian string
@@ -365,17 +385,4 @@ var testVariants = []struct {
 	{"test тест test", "test test test"},
 	{"1234567890", "1234567890"},
 	{"test TEST 123", "test TEST 123"},
-}
-
-func TestUkrToLat(t *testing.T) {
-	for _, data := range testVariants {
-		if result := transliteration.UkrToLat(data.ukrainian); result != data.latin {
-			t.Errorf(
-				"Transliteration of %s\"%s\"%s is incorrect, expected: %s\"%s\"%s, actual: %s\"%s\"%s.",
-				yellow, data.ukrainian, reset,
-				green, data.latin, reset,
-				red, result, reset,
-			)
-		}
-	}
 }
