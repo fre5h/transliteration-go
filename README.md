@@ -68,4 +68,4 @@ transliterated text: Slava Ukraini!
 
 ## Contributing 🤝
 
-See [CONTRIBUTING](https://github.com/fre5h/transliteration/blob/master/.github/CONTRIBUTING.md) file.
+See [CONTRIBUTING](https://github.com/fre5h/transliteration-go/blob/master/.github/CONTRIBUTING.md) file.
