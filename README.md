@@ -46,9 +46,9 @@ func main() {
 ###### bash
 
 ```bash
-$ go get "github.com/fre5h/transliteration-go"@v1.1.3
-go: downloading github.com/fre5h/transliteration-go v1.1.3
-go: added github.com/fre5h/transliteration-go v1.1.3
+$ go get "github.com/fre5h/transliteration-go"@v1.1.4
+go: downloading github.com/fre5h/transliteration-go v1.1.4
+go: added github.com/fre5h/transliteration-go v1.1.4
 
 $ go run main.go Слава Україні!
 transliterated text: Slava Ukraini!
