@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run all tests" type="GoTestRunConfiguration" factoryName="Go Test">
+  <configuration default="false" name="Run all tests" type="GoTestRunConfiguration" factoryName="Go Test" folderName="New Folder">
     <module name="transliteration-go" />
     <working_directory value="$PROJECT_DIR$" />
     <kind value="DIRECTORY" />

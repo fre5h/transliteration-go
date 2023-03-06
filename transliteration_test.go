@@ -1,10 +1,3 @@
-// Transliteration from Ukrainian to Latin.
-//
-// According to the rules of transliteration, that are described in the resolution
-// of the Cabinet of Ministers of Ukraine №55 dated January 27, 2010.
-//
-// https://zakon.rada.gov.ua/laws/show/55-2010-%D0%BF#Text
-
 package transliteration_test
 
 import (

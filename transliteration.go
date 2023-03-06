@@ -1,4 +1,4 @@
-// Transliteration from Ukrainian to Latin.
+// Package transliteration does translit from Ukrainian to Latin.
 //
 // According to the rules of transliteration, that are described in the resolution
 // of the Cabinet of Ministers of Ukraine №55 dated January 27, 2010.

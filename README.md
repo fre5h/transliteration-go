@@ -12,7 +12,7 @@ GO library for transliteration. 🇺🇦 🇬🇧 🔡
 
 ## Requirements 🧐
 
-* GO >= 1.18
+* GO >= 1.20
 
 ## Available transliteration methods 🎁
 
