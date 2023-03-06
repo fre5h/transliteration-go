@@ -2,7 +2,7 @@
 
 GO library for transliteration. 🇺🇦 🇬🇧 🔡
 
-[![Build Status](https://img.shields.io/github/workflow/status/fre5h/transliteration-go/CI/main?style=flat-square)](https://img.shields.io/github/actions/workflow/status/fre5h/transliteration-go/ci.yml?branch=main)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/fre5h/transliteration-go/ci.yml?branch=main&style=flat-square)](https://github.com/fre5h/transliteration-go/actions?query=workflow%3ACI+branch%3Amain+)
 [![CodeCov](https://img.shields.io/codecov/c/github/fre5h/transliteration-go.svg?style=flat-square)](https://codecov.io/github/fre5h/transliteration-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/fre5h/transliteration-go?style=flat-square)](https://goreportcard.com/report/github.com/fre5h/transliteration-go)
 [![License](https://img.shields.io/github/license/fre5h/transliteration-go?style=flat-square)](https://pkg.go.dev/github.com/fre5h/transliteration-go)
