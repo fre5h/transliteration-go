@@ -8,6 +8,7 @@
 # GoLand
 .idea/*
 !.idea/runConfigurations
+!.idea/icon.svg
 
 # Test binary, built with `go test -c`
 *.test
