@@ -1,6 +1,6 @@
 package transliteration
 
-var ukrToLatRules = map[rune]string{
+var cyrillicToLatin = map[rune]string{
 	'А': "A",
 	'Б': "B",
 	'В': "V",
@@ -97,4 +97,11 @@ var uppercaseConsonants = map[rune]string{
 	'Ч': "CH",
 	'Ш': "SH",
 	'Щ': "SHCH",
+}
+
+var zghEdgecases = map[[2]rune]string{
+	{'З', 'г'}: "Zgh",
+	{'З', 'Г'}: "ZGH",
+	{'з', 'г'}: "zgh",
+	{'з', 'Г'}: "zGH",
 }
