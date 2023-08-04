@@ -12,9 +12,9 @@ const red = "\033[31m"
 const green = "\033[32m"
 const yellow = "\033[33m"
 
-func TestUkrToLat(t *testing.T) {
+func TestCyrToLat(t *testing.T) {
 	for _, data := range testVariants {
-		if result := transliteration.UkrToLat(data.ukrainian); result != data.latin {
+		if result := transliteration.CyrToLat(data.ukrainian); result != data.latin {
 			t.Errorf(
 				"Transliteration of %s\"%s\"%s is incorrect, expected: %s\"%s\"%s, actual: %s\"%s\"%s.",
 				yellow, data.ukrainian, reset,
@@ -25,8 +25,8 @@ func TestUkrToLat(t *testing.T) {
 	}
 }
 
-func ExampleUkrToLat() {
-	fmt.Println(transliteration.UkrToLat("Слава Україні!"))
+func ExampleCyrToLat() {
+	fmt.Println(transliteration.CyrToLat("Слава Україні!"))
 	// Output:
 	// Slava Ukraini!
 }
