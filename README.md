@@ -9,6 +9,9 @@ GO library for transliteration. 🇺🇦 🇬🇧 🔡
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg?style=flat-square)](https://gitter.im/fre5h/transliteration-go)
 [![GoDoc](https://pkg.go.dev/badge/github.com/fre5h/transliteration-go)](https://pkg.go.dev/github.com/fre5h/transliteration-go)
 
+## Demo ⚙️
+
+You can test it with my [Transliteration Telegram Bot](https://t.me/transliteration_ua_bot).
 
 ## Requirements 🧐
 
