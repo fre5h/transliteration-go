@@ -12,7 +12,7 @@ const red = "\033[31m"
 const green = "\033[32m"
 const yellow = "\033[33m"
 
-func TestUkrToLat(t *testing.T) {
+func TestCyrToLat(t *testing.T) {
 	for _, data := range testVariants {
 		if result := transliteration.CyrToLat(data.ukrainian); result != data.latin {
 			t.Errorf(
