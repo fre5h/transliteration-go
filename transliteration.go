@@ -20,7 +20,7 @@ func UkrToLat(ukrainianText string) (transliteratedText string) {
 			continue
 		}
 
-		if latChar, isUrkChar := ukrToLatRules[currentChar]; isUrkChar {
+		if latChar, isUkrChar := ukrToLatRules[currentChar]; isUkrChar {
 			switch currentChar {
 			// Process exceptions for "Зг", "зг"
 			case 'З', 'з':
