@@ -2,6 +2,7 @@ package transliteration_test
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/fre5h/transliteration-go"
@@ -378,4 +379,20 @@ var testVariants = []struct {
 	{"test тест test", "test test test"},
 	{"1234567890", "1234567890"},
 	{"test TEST 123", "test TEST 123"},
+
+	// Apostrophes: ASCII ', typographic ’ and Ukrainian ʼ all separate syllables and are dropped
+	{"Мар'їне", "Marine"},
+	{"Мар’їне", "Marine"},
+	{"МАР'ЇНЕ", "MARINE"},
+	{"Коропʼє", "Koropie"},
+	{"rock'n'roll", "rock'n'roll"},
+}
+
+func BenchmarkUkrToLat(b *testing.B) {
+	text := strings.Repeat("Слава Україні! Житомир, Київ. ", 1000)
+	b.ReportAllocs()
+	b.SetBytes(int64(len(text)))
+	for i := 0; i < b.N; i++ {
+		transliteration.UkrToLat(text)
+	}
 }

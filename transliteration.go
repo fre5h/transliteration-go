@@ -6,13 +6,23 @@
 // https://zakon.rada.gov.ua/laws/show/55-2010-%D0%BF#Text
 package transliteration
 
-import "unicode"
+import (
+	"strings"
+	"unicode"
+)
+
+// ukrApostrophe is the Ukrainian apostrophe (U+02BC), which is dropped in transliteration.
+const ukrApostrophe = 'ʼ'
 
 // UkrToLat transliterates Ukrainian text into Latin in accordance with established rules
-func UkrToLat(ukrainianText string) (transliteratedText string) {
+func UkrToLat(ukrainianText string) string {
 	characters := []rune(ukrainianText)
+	normalizeApostrophes(characters)
 	numberOfChars := len(characters)
 	skipNextChar := false
+
+	var transliteratedText strings.Builder
+	transliteratedText.Grow(len(ukrainianText))
 
 	for i, currentChar := range characters {
 		if skipNextChar {
@@ -27,7 +37,7 @@ func UkrToLat(ukrainianText string) (transliteratedText string) {
 				if i+1 != numberOfChars { // has next char
 					nextChar := characters[i+1]
 					if nextChar == 'Г' || nextChar == 'г' {
-						transliteratedText += processZghException(currentChar, nextChar)
+						transliteratedText.WriteString(processZghException(currentChar, nextChar))
 						skipNextChar = true
 						continue
 					}
@@ -37,7 +47,7 @@ func UkrToLat(ukrainianText string) (transliteratedText string) {
 				// Has prev char
 				if i != 0 {
 					if _, prevCharacterIsUkrainian := ukrToLatRules[characters[i-1]]; prevCharacterIsUkrainian {
-						transliteratedText += insideWord[currentChar]
+						transliteratedText.WriteString(insideWord[currentChar])
 						continue
 					}
 				}
@@ -46,32 +56,50 @@ func UkrToLat(ukrainianText string) (transliteratedText string) {
 				// Has prev char
 				if i != 0 {
 					if _, prevCharIsUkr := ukrToLatRules[characters[i-1]]; prevCharIsUkr {
-						transliteratedText += insideWord[currentChar]
+						transliteratedText.WriteString(insideWord[currentChar])
 						continue
 					}
 				}
 
 				// Previous or next character is also uppercase
 				if (i != 0 && unicode.IsUpper(characters[i-1])) || (i+1 != numberOfChars && unicode.IsUpper(characters[i+1])) {
-					transliteratedText += uppercaseVowels[currentChar]
+					transliteratedText.WriteString(uppercaseVowels[currentChar])
 					continue
 				}
 			// Process uppercase exceptions for consonants
 			case 'Ж', 'Х', 'Ц', 'Ч', 'Ш', 'Щ':
 				// Previous or next character is also uppercase
 				if (i != 0 && unicode.IsUpper(characters[i-1])) || (i+1 != numberOfChars && unicode.IsUpper(characters[i+1])) {
-					transliteratedText += uppercaseConsonants[currentChar]
+					transliteratedText.WriteString(uppercaseConsonants[currentChar])
 					continue
 				}
 			}
 
-			transliteratedText += latChar
+			transliteratedText.WriteString(latChar)
 		} else {
-			transliteratedText += string(currentChar)
+			transliteratedText.WriteRune(currentChar)
 		}
 	}
 
-	return
+	return transliteratedText.String()
+}
+
+// normalizeApostrophes replaces ASCII apostrophe and typographic apostrophe with the
+// Ukrainian apostrophe ʼ when it follows a Ukrainian letter, so that it is dropped
+// the same way and does not hide the preceding letter from the "inside word" rules.
+func normalizeApostrophes(characters []rune) {
+	for i := 1; i < len(characters); i++ {
+		if !isApostrophe(characters[i]) {
+			continue
+		}
+		if _, prevIsUkr := ukrToLatRules[characters[i-1]]; prevIsUkr {
+			characters[i] = ukrApostrophe
+		}
+	}
+}
+
+func isApostrophe(r rune) bool {
+	return r == '\'' || r == '’' || r == ukrApostrophe
 }
 
 func processZghException(firstChar, secondChar rune) (result string) {

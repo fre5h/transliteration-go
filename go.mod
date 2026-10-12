@@ -1,3 +1,3 @@
 module github.com/fre5h/transliteration-go
 
-go 1.20
+go 1.27
