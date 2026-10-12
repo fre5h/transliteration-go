@@ -18,67 +18,53 @@ const ukrApostrophe = 'ʼ'
 func UkrToLat(ukrainianText string) string {
 	characters := []rune(ukrainianText)
 	normalizeApostrophes(characters)
-	numberOfChars := len(characters)
-	skipNextChar := false
 
 	var transliteratedText strings.Builder
 	transliteratedText.Grow(len(ukrainianText))
 
-	for i, currentChar := range characters {
-		if skipNextChar {
-			skipNextChar = false
+	for i := 0; i < len(characters); i++ {
+		currentChar := characters[i]
+
+		latChar, isUkrChar := ukrToLatRules[currentChar]
+		if !isUkrChar {
+			transliteratedText.WriteRune(currentChar)
 			continue
 		}
 
-		if latChar, isUkrChar := ukrToLatRules[currentChar]; isUkrChar {
-			switch currentChar {
-			// Process exceptions for "Зг", "зг"
-			case 'З', 'з':
-				if i+1 != numberOfChars { // has next char
-					nextChar := characters[i+1]
-					if nextChar == 'Г' || nextChar == 'г' {
-						transliteratedText.WriteString(processZghException(currentChar, nextChar))
-						skipNextChar = true
-						continue
-					}
-				}
-			// Process exceptions inside word
-			case 'є', 'ї', 'Й', 'й', 'ю', 'я':
-				// Has prev char
-				if i != 0 {
-					if _, prevCharacterIsUkrainian := ukrToLatRules[characters[i-1]]; prevCharacterIsUkrainian {
-						transliteratedText.WriteString(insideWord[currentChar])
-						continue
-					}
-				}
-			// Process uppercase exceptions for vowels
-			case 'Ї', 'Є', 'Ю', 'Я':
-				// Has prev char
-				if i != 0 {
-					if _, prevCharIsUkr := ukrToLatRules[characters[i-1]]; prevCharIsUkr {
-						transliteratedText.WriteString(insideWord[currentChar])
-						continue
-					}
-				}
-
-				// Previous or next character is also uppercase
-				if (i != 0 && unicode.IsUpper(characters[i-1])) || (i+1 != numberOfChars && unicode.IsUpper(characters[i+1])) {
-					transliteratedText.WriteString(uppercaseVowels[currentChar])
-					continue
-				}
-			// Process uppercase exceptions for consonants
-			case 'Ж', 'Х', 'Ц', 'Ч', 'Ш', 'Щ':
-				// Previous or next character is also uppercase
-				if (i != 0 && unicode.IsUpper(characters[i-1])) || (i+1 != numberOfChars && unicode.IsUpper(characters[i+1])) {
-					transliteratedText.WriteString(uppercaseConsonants[currentChar])
-					continue
-				}
+		switch currentChar {
+		// Process exceptions for "Зг", "зг"
+		case 'З', 'з':
+			if i+1 < len(characters) && isZgh(characters[i+1]) {
+				transliteratedText.WriteString(zghTransliteration(currentChar, characters[i+1]))
+				i++ // the "г" is consumed by the exception
+				continue
+			}
+		// Process exceptions inside word
+		case 'є', 'ї', 'Й', 'й', 'ю', 'я':
+			if hasUkrainianPrev(characters, i) {
+				transliteratedText.WriteString(insideWord[currentChar])
+				continue
+			}
+		// Process uppercase exceptions for vowels
+		case 'Ї', 'Є', 'Ю', 'Я':
+			if hasUkrainianPrev(characters, i) {
+				transliteratedText.WriteString(insideWord[currentChar])
+				continue
 			}
 
-			transliteratedText.WriteString(latChar)
-		} else {
-			transliteratedText.WriteRune(currentChar)
+			if hasUppercaseNeighbour(characters, i) {
+				transliteratedText.WriteString(uppercaseVowels[currentChar])
+				continue
+			}
+		// Process uppercase exceptions for consonants
+		case 'Ж', 'Х', 'Ц', 'Ч', 'Ш', 'Щ':
+			if hasUppercaseNeighbour(characters, i) {
+				transliteratedText.WriteString(uppercaseConsonants[currentChar])
+				continue
+			}
 		}
+
+		transliteratedText.WriteString(latChar)
 	}
 
 	return transliteratedText.String()
@@ -89,10 +75,7 @@ func UkrToLat(ukrainianText string) string {
 // the same way and does not hide the preceding letter from the "inside word" rules.
 func normalizeApostrophes(characters []rune) {
 	for i := 1; i < len(characters); i++ {
-		if !isApostrophe(characters[i]) {
-			continue
-		}
-		if _, prevIsUkr := ukrToLatRules[characters[i-1]]; prevIsUkr {
+		if isApostrophe(characters[i]) && isUkrainian(characters[i-1]) {
 			characters[i] = ukrApostrophe
 		}
 	}
@@ -102,16 +85,34 @@ func isApostrophe(r rune) bool {
 	return r == '\'' || r == '’' || r == ukrApostrophe
 }
 
-func processZghException(firstChar, secondChar rune) (result string) {
-	if firstChar == 'З' && secondChar == 'г' {
-		result = "Zgh"
-	} else if firstChar == 'З' && secondChar == 'Г' {
-		result = "ZGH"
-	} else if firstChar == 'з' && secondChar == 'г' {
-		result = "zgh"
-	} else if firstChar == 'з' && secondChar == 'Г' {
-		result = "zGH"
-	}
+func isUkrainian(r rune) bool {
+	_, ok := ukrToLatRules[r]
+	return ok
+}
 
-	return
+// hasUkrainianPrev reports whether the character before position i is a Ukrainian letter.
+func hasUkrainianPrev(characters []rune, i int) bool {
+	return i > 0 && isUkrainian(characters[i-1])
+}
+
+// hasUppercaseNeighbour reports whether the character before or after position i is uppercase.
+func hasUppercaseNeighbour(characters []rune, i int) bool {
+	return (i > 0 && unicode.IsUpper(characters[i-1])) ||
+		(i+1 < len(characters) && unicode.IsUpper(characters[i+1]))
+}
+
+func isZgh(r rune) bool {
+	return r == 'Г' || r == 'г'
+}
+
+// zghTransliteration returns "Zgh", "zgh", "ZGH" or "zGH" depending on the case of both letters.
+func zghTransliteration(first, second rune) string {
+	result := "zgh"
+	if unicode.IsUpper(first) {
+		result = "Z" + result[1:]
+	}
+	if unicode.IsUpper(second) {
+		result = result[:1] + "GH"
+	}
+	return result
 }
