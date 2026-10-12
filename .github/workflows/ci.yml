@@ -6,16 +6,19 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  GO_VERSION: "1.27"
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
 
     - name: Set up Go
-      uses: actions/setup-go@v3
+      uses: actions/setup-go@v7
       with:
-        go-version: 1.20.1
+        go-version: ${{ env.GO_VERSION }}
 
     - name: Test
       run: go test -v ./...
@@ -24,12 +27,12 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v7
         with:
-          go-version: 1.20.1
+          go-version: ${{ env.GO_VERSION }}
 
       - name: Build
         run: go build -v ./...
@@ -41,12 +44,12 @@ jobs:
       GOFLAGS: -mod=readonly
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v7
         with:
-          go-version: 1.20.1
+          go-version: ${{ env.GO_VERSION }}
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Lint
         uses: golangci/golangci-lint-action@v3
@@ -57,12 +60,12 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v7
         with:
-          go-version: 1.20.1
+          go-version: ${{ env.GO_VERSION }}
 
       - name: Run test coverage
         run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
