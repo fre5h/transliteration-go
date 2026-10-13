@@ -14,7 +14,7 @@ You can test it with my [Transliteration Telegram Bot](https://t.me/transliterat
 
 ## Requirements 🧐
 
-* GO >= 1.20
+* GO >= 1.27
 
 ## Available transliteration methods 🎁
 
@@ -48,9 +48,9 @@ func main() {
 ###### bash
 
 ```bash
-$ go get "github.com/fre5h/transliteration-go"@v1.2.0
-go: downloading github.com/fre5h/transliteration-go v1.2.0
-go: added github.com/fre5h/transliteration-go v1.2.0
+$ go get "github.com/fre5h/transliteration-go"@v1.2.1
+go: downloading github.com/fre5h/transliteration-go v1.2.1
+go: added github.com/fre5h/transliteration-go v1.2.1
 
 $ go run main.go Слава Україні!
 transliterated text: Slava Ukraini!
